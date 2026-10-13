@@ -1,42 +1,60 @@
-﻿# Clareza ATS
+# Clareza ATS
 
-AplicaÃ§Ã£o para comparar um currÃ­culo com uma vaga, identificar palavras-chave e exportar uma versÃ£o de uma coluna que preserva os fatos fornecidos.
+Ferramenta para comparar as palavras-chave de uma vaga com o texto de um currículo. Mostra termos presentes e ausentes e prepara uma versão editável para copiar, baixar em TXT ou imprimir.
 
-AplicaÃ§Ã£o: https://clareza-ats-beatrix.beatrizfpedroso1.chatgpt.site
+[Abrir o aplicativo](https://clareza-ats-beatrix.beatrizfpedroso1.chatgpt.site)
 
-## Ferramenta e escopo
+## Funcionalidades
 
-O Lovable permaneceu com o painel vazio apÃ³s o login. Com autorizaÃ§Ã£o da pessoa responsÃ¡vel pelo projeto, o app foi implementado com assistÃªncia do Codex e publicado pela ferramenta Sites. A aplicaÃ§Ã£o nÃ£o foi gerada nem exportada pelo Lovable. Essa diferenÃ§a em relaÃ§Ã£o Ã  ferramenta indicada no desafio Ã© explÃ­cita nesta entrega.
+- Comparar o currículo com a descrição da vaga.
+- Mostrar evidências dos termos encontrados e sugestões sobre os ausentes.
+- Calcular a cobertura das palavras-chave analisadas.
+- Preparar um texto de uma coluna, preservando os fatos fornecidos.
+- Editar e copiar o resultado, baixar TXT ou imprimir/salvar como PDF pelo navegador.
 
-O MVP usa HTML, CSS e JavaScript, sem dependÃªncias externas ou login. Os textos sÃ£o processados no navegador e nÃ£o sÃ£o enviados a um modelo de linguagem. A versÃ£o ajustada normaliza espaÃ§os e quebras de linha e pode ser editada antes de exportar. NÃ£o hÃ¡ avaliaÃ§Ã£o real por ATS, anÃ¡lise semÃ¢ntica ou garantia de contrataÃ§Ã£o.
+## Como a comparação funciona
 
-## Prompt utilizado
+A ferramenta seleciona competências reconhecidas no texto da vaga. Quando nenhuma competência da lista é encontrada, usa até 12 palavras relevantes, excluindo palavras comuns. A comparação normaliza acentos e maiúsculas e considera os limites das palavras.
 
-Crie Clareza ATS em portuguÃªs brasileiro. Receba a vaga e o currÃ­culo em dois campos, identifique competÃªncias presentes e ausentes e explique a cobertura lexical. Nunca invente fatos, experiÃªncias, certificaÃ§Ãµes ou resultados. Mostre evidÃªncias dos termos encontrados. Prepare uma versÃ£o de uma coluna, editÃ¡vel, preservando integralmente os fatos do texto original. Permita copiar, baixar TXT e imprimir ou salvar PDF com texto selecionÃ¡vel. Valide campos vazios e ofereÃ§a um exemplo fictÃ­cio. NÃ£o envie nem persista dados pessoais por padrÃ£o. Crie uma interface responsiva com verde, fundo claro, contraste legÃ­vel e rÃ³tulos acessÃ­veis.
+A cobertura é o número de termos encontrados no currículo dividido pelo número de termos analisados. Essa porcentagem não é uma nota de empregabilidade nem reproduz a avaliação de um sistema ATS real.
 
-## Como funciona
+A preparação do currículo organiza espaços e quebras de linha. Ela não acrescenta competências, experiências ou certificações. Termos ausentes devem ser incluídos apenas quando forem verdadeiros e relevantes para a experiência da pessoa.
 
-1. A pessoa cola a vaga e o currÃ­culo.
-2. Uma lista de competÃªncias reconhecidas Ã© filtrada pelos termos presentes na vaga. Se a lista estiver vazia, atÃ© 12 palavras relevantes sÃ£o selecionadas do texto, excluindo palavras comuns.
-3. A comparaÃ§Ã£o normaliza acentos e maiÃºsculas e usa limites de palavras.
-4. A cobertura corresponde ao nÃºmero de termos encontrados dividido pelo nÃºmero de termos analisados.
-5. A versÃ£o para exportaÃ§Ã£o preserva o texto do currÃ­culo e organiza espaÃ§os e quebras de linha. Termos ausentes nÃ£o sÃ£o inseridos.
+## Implementação e privacidade
 
-## Ajustes e validaÃ§Ã£o
+O aplicativo foi desenvolvido em HTML, CSS e JavaScript, com assistência do Codex, e publicado pela ferramenta Sites. O Lovable não carregou nesta sessão; esta implementação usa uma ferramenta diferente da indicada no desafio da DIO.
 
-Foi acrescentada uma explicaÃ§Ã£o do mÃ©todo para que a porcentagem nÃ£o seja confundida com uma nota de empregabilidade. A geraÃ§Ã£o livre de experiÃªncias foi excluÃ­da do escopo. O layout de impressÃ£o foi separado da interface, com uma coluna, texto selecionÃ¡vel e quebra de linhas longas.
+A análise é lexical, sem IA generativa ou avaliação semântica. Os textos são processados no navegador, sem backend, login ou armazenamento persistente do currículo. O aplicativo não oferece garantia de aprovação em processos seletivos.
 
-VerificaÃ§Ãµes executadas: sintaxe JavaScript; resposta HTTP 200; mensagem de erro para campos vazios; exemplo com 4 de 5 termos presentes, resultando em 80%; cenÃ¡rio com Excel presente e Python e SQL ausentes, resultando em 33%; preparaÃ§Ã£o do currÃ­culo sem acrescentar Python ou SQL. A automaÃ§Ã£o do navegador nÃ£o confirmou o evento de download, por isso a abertura do arquivo TXT e a saÃ­da PDF devem ser conferidas manualmente antes de uso real.
+## Prompt de criação
 
-## Executar localmente
+Crie uma ferramenta em português brasileiro com campos para vaga e currículo. Identifique palavras-chave presentes e ausentes, mostre evidências e explique o cálculo da cobertura. Nunca invente fatos ou experiências. Prepare uma versão editável de uma coluna, preservando o conteúdo original. Permita copiar, baixar TXT e imprimir. Valide campos vazios e ofereça um exemplo fictício. Não envie nem armazene os dados pessoais. Use uma interface responsiva, com rótulos acessíveis e contraste legível.
 
-Sirva a pasta do repositório com qualquer servidor estÃ¡tico. Por exemplo: `python -m http.server 8000`. Abra http://localhost:8000.
+## Validação realizada
+
+Foram verificados a sintaxe JavaScript, a resposta HTTP 200, o erro para campos vazios e dois cenários de comparação:
+
+| Cenário | Resultado |
+| --- | --- |
+| Exemplo com quatro de cinco termos presentes | Cobertura de 80% |
+| Excel presente, Python e SQL ausentes | Cobertura de 33%, sem acrescentar os termos ausentes ao currículo |
+
+A automação não confirmou a conclusão do download TXT. A abertura desse arquivo e a saída de impressão/PDF ainda precisam de conferência manual. Não houve validação contra sistemas ATS comerciais.
+
+## Executar
+
+Abra `index.html` no navegador ou sirva a pasta com um servidor estático já disponível. Por exemplo, se Python estiver instalado:
+
+```sh
+python -m http.server 8000
+```
+
+Acesse http://localhost:8000. O projeto não exige instalar dependências.
 
 ## Arquivos
 
 - `index.html`: interface e campos.
-- `style.css`: layout responsivo e impressÃ£o.
-- `app.js`: comparaÃ§Ã£o, revisÃ£o e exportaÃ§Ã£o.
+- `style.css`: apresentação e impressão.
+- `app.js`: comparação, revisão e exportação.
 
-Use apenas os dados fictÃ­cios da demonstraÃ§Ã£o ao testar. NÃ£o hÃ¡ chaves, tokens ou senhas no cÃ³digo.
-
+Use os dados fictícios do exemplo ao testar. O código não contém chaves, tokens ou senhas.
